@@ -1,23 +1,22 @@
-%define MACH_SYSCALL(nb)	(0x2000000 | nb)
 %define READ				3
 
 section	.text
-	global	_ft_read
-	extern	___error
+	global	ft_read
+	extern	__errno_location
 
-_ft_read:
+ft_read:
 ; ssize_t	ft_read(int fd rdi, char *buf rsi, size_t count rcx)
 ; setup tack
 	push rbp
 	mov rbp, rsp
 
-	mov rax, MACH_SYSCALL(READ)
+	mov rax, READ
 	syscall
 	jnc end
 
 error:
 	push rax
-	call ___error
+	call __errno_location wrt ..plt
 	pop rcx
 	mov qword [rax], rcx
 	mov rax, -1

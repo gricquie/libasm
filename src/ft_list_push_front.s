@@ -1,6 +1,6 @@
 section .text
-	global _ft_list_push_front
-	extern _malloc
+	global ft_list_push_front
+	extern malloc
 
 ;t_list
 ;{
@@ -8,7 +8,7 @@ section .text
 ;	t_list	*next	8B
 ;}
 
-_ft_list_push_front:
+ft_list_push_front:
 ; void	ft_list_push_front(t_list **begin_list rdi, void * data rsi)
 	push rbp
 	mov rbp, rsp
@@ -18,7 +18,7 @@ _ft_list_push_front:
 	push rdi
 	push rsi
 	mov rdi, 16
-	call _malloc
+	call malloc wrt ..plt
 	cmp rax, 0
 	je end
 	pop rsi

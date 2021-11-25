@@ -1,7 +1,7 @@
 section	.text
-	global _ft_list_sort
+	global ft_list_sort
 
-_ft_list_sort:
+ft_list_sort:
 ; void	ft_list_sort(t_list **begin rdi, int (*cmp)() rsi)
 	push rbp
 	mov rbp, rsp
@@ -17,16 +17,13 @@ _ft_list_sort:
 	je end
 
 ;sort the next
-	push rdi
 	push rsi
+	push rdi
 	mov rdi, rax
-	call _ft_list_sort
-	pop rsi
-	pop rdi
+	call ft_list_sort
+	mov rdi, [rsp]
 
 ;cmp cur
-	push rsi
-	push rdi
 	mov rdi, [rdi]
 	mov rsi, [rdi + 8]
 	mov rdi, [rdi]
@@ -50,5 +47,5 @@ swap:
 	mov qword [rax + 8], rbx
 	mov [rdi], rax
 	pop rsi
-	call _ft_list_sort
+	call ft_list_sort
 	jmp end

@@ -1,7 +1,7 @@
 section .text
-	global _ft_list_size
+	global ft_list_size
 
-_ft_list_size:
+ft_list_size:
 ; int	ft_list_size(t_list *begin rdi)
 	push rbp
 	mov rbp, rsp

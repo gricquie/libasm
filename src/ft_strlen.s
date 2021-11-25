@@ -1,15 +1,7 @@
-%define MACH_SYSCALL(nb)	0x2000000 | nb
-%define STDOUT				1
-%define	WRITE				4
-
-section	.data
-
-section	.bss
-
 section	.text
-	global _ft_strlen
+	global ft_strlen
 
-_ft_strlen:
+ft_strlen:
 ; setup stack
 	push rbp
 	mov rbp, rsp

@@ -1,8 +1,8 @@
 section .text
-	global _ft_list_remove_if
-	extern _free
+	global ft_list_remove_if
+	extern free
 
-_ft_list_remove_if:
+ft_list_remove_if:
 ; voif ft_list_remove_if(t_list **begin rdi, void *data_ref rsi, int (*cmp)() rdx)
 	push rbp
 	mov rbp, rsp
@@ -19,7 +19,7 @@ _ft_list_remove_if:
 	push rsi
 	add rax, 8
 	mov rdi, rax
-	call _ft_list_remove_if
+	call ft_list_remove_if
 	pop rsi
 	pop rdi
 	mov rax, [rdi]
@@ -47,7 +47,7 @@ remove:
 	push rsi
 	push rdx
 	mov rdi, rax
-	call _free
+	call free wrt ..plt
 	pop rdx
 	pop rsi
 	pop rdi

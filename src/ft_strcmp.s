@@ -1,7 +1,7 @@
 section .text
-	global _ft_strcmp
+	global ft_strcmp
 
-_ft_strcmp:
+ft_strcmp:
 ; setupstack
 	push rbp
 	mov rbp, rsp

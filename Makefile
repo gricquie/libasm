@@ -6,7 +6,7 @@
 #    By: gricquie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/21 20:51:53 by gricquie          #+#    #+#              #
-#    Updated: 2021/10/12 16:07:15 by gricquie         ###   ########.fr        #
+#    Updated: 2021/11/08 17:13:44 by gricquie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ SRCS = $(addprefix $(SDIR)/, $(SRCS_RAW))
 OBJS = $(addprefix $(ODIR)/, $(OBJS_RAW))
 
 BONUSSRCS_RAW = ft_atoi_base.s \
-				ft_list_push_front.s \
-				ft_list_size.s \
-				ft_list_sort.s \
-				ft_list_remove_if.s \
+		ft_list_push_front.s \
+		ft_list_size.s \
+		ft_list_sort.s \
+		ft_list_remove_if.s \
 
 BONUSOBJS_RAW = $(BONUSSRCS_RAW:.s=.o)
 
@@ -54,7 +54,7 @@ $(NAME) : $(OBJS) $(BONUSOBJS)
 
 $(ODIR)/%.o : $(SDIR)/%.s
 	@mkdir -p $(ODIR)
-	nasm -f macho64 $< -o $@
+	nasm -f elf64 $< -o $@
 
 bonus : $(NAME) $(BONUSOBJS)
 	ar -rc $(NAME) $(BONUSOBJS)
@@ -64,7 +64,7 @@ $(TESTOBJ) : $(TESTSRC) $(HEADER)
 	gcc -c $< -o $@ -I$(HDIR)
 
 $(TEST) : $(NAME) $(TESTOBJ) $(HEADER)
-	gcc $(NAME) $(TESTOBJ) -o $@
+	gcc $(TESTOBJ) $(NAME) -o $@
 
 run : $(TEST)
 	./$(TEST)

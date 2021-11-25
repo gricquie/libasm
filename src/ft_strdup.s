@@ -1,10 +1,10 @@
 section .text
-	global	_ft_strdup
-	extern	_malloc
-	extern	_ft_strlen
-	extern	_ft_strcpy
+	global	ft_strdup
+	extern	malloc
+	extern	ft_strlen
+	extern	ft_strcpy
 
-_ft_strdup:
+ft_strdup:
 ; char	*ft_strdup(char *s rdi)
 	push rbp
 	mov rbp, rsp
@@ -12,16 +12,16 @@ _ft_strdup:
 	cmp rdi, 0
 	je error
 	push rdi
-	call _ft_strlen
+	call ft_strlen
 	mov rdi, rax
 	inc rdi
-	call _malloc
+	call malloc wrt ..plt
 	cmp rax, 0
 	je error
 	pop rdi
 	mov rsi, rax
 	push rsi
-	call _ft_strcpy
+	call ft_strcpy
 	pop rax
 	leave
 	ret

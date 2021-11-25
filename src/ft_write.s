@@ -1,25 +1,24 @@
-%define MACH_SYSCALL(nb)	(0x2000000 | nb)
 %define	WRITE				4
 
 section	.text
-	global _ft_write
-	extern ___error
+	global ft_write
+	extern __errno_location
 
-_ft_write:
+ft_write:
 ; setup stack
 	push rbp
 	mov rbp, rsp
 
 ; fd in rdi, buf in rsi, count in rdx
 	push rdx
-	mov rax, MACH_SYSCALL(WRITE)
+	mov rax, WRITE
 ; args already in place
 	syscall
 	jnc	end
 
 error:
 	push rax
-	call ___error
+	call __errno_location wrt ..plt
 	pop rcx
 	mov qword [rax], rcx
 	mov rax, -1

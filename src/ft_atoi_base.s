@@ -1,8 +1,8 @@
 section .text
-	global _ft_atoi_base
-	extern _ft_strlen
+	global ft_atoi_base
+	extern ft_strlen
 
-_ft_atoi_base:
+ft_atoi_base:
 ; int ft_atoi_base(char *str rdi, char *base rsi)
 	push rbp
 	mov rbp, rsp
@@ -18,7 +18,7 @@ get_base_len:
 ; len in rax
 	push rdi
 	mov rdi, rsi
-	call _ft_strlen
+	call ft_strlen
 	pop rdi
 	cmp rax, 1
 	jbe error
