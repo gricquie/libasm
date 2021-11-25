@@ -1,4 +1,4 @@
-%define READ				3
+%define READ	0
 
 section	.text
 	global	ft_read
@@ -12,7 +12,8 @@ ft_read:
 
 	mov rax, READ
 	syscall
-	jnc end
+	test rax, rax
+	jns end
 
 error:
 	push rax

@@ -1,4 +1,4 @@
-%define	WRITE				4
+%define	WRITE	1
 
 section	.text
 	global ft_write
@@ -14,7 +14,8 @@ ft_write:
 	mov rax, WRITE
 ; args already in place
 	syscall
-	jnc	end
+	test rax,rax
+	jns end
 
 error:
 	push rax

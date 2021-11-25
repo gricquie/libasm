@@ -15,13 +15,11 @@ void	test_strlen()
 
 void	test_strcpy()
 {
-	char	*d = malloc(64);
+	char	d[64];
 
 	printf("\n== test ft_strcpy ==\n");
 	ft_strcpy("potat", d);
 	printf("%s\n", d);
-
-	free(d);
 }
 
 void	test_strcmp()
@@ -37,7 +35,7 @@ void	test_write()
 {
 	printf("\n== test ft_write ==\n");
 	printf("%zd\n", ft_write(1, "potat\n", 6));
-	printf("%zd\n", ft_write(1, "potat\n", 4));
+	printf("%zd\n", ft_write(1, "pot\nat", 4));
 	printf("%zd - %d\n", ft_write(9, "potat\n", 6), errno);
 	printf("%zd - %d\n", ft_write(1, 0, 6), errno);
 	printf("%zd - %d\n", ft_write(1, "potat\n", -1), errno);
@@ -50,7 +48,12 @@ void	test_read()
 	char	buf[128];
 
 	printf("\n== test ft_read ==\n");
-	fd = open("test.c", O_RDONLY);
+	fd = open("./test.c", O_RDONLY);
+	if (fd < 0)
+	{
+		printf("error on open\n");
+		return ;	
+	}
 
 	printf("%zd\n", ft_read(fd, buf, 18));
 	printf("%.18s\n", buf);
